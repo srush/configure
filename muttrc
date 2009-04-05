@@ -1,0 +1,150 @@
+# -*- python -*- hee haw!
+
+###
+### behavior
+###
+
+set pager_index_lines = 10
+set pager_context = 2
+set index_format = '%4C %Z %[%b %d %H:%M] %-18.18F %s'
+#set date_format = '%a, %b %d, %Y at %I:%M:%S%p %Z'
+#set status_format = '-%r-Mutt: %f [Msgs:%?M?%M/?%m%?n? New:%n?%?o? Old:%o?%?d? Del:%d?%?F? Flag:%F?%?t? Tag:%t?%?p? Post:%p?%?b? Inc:%b?%?l? %l?]---(%s/%S)-%>-(%P)---'
+
+
+set fast_reply = yes
+set include = yes
+set sleep_time = 0
+set header_cache=~/.mutt/cache/headers
+set message_cachedir=~/.mutt/cache/bodies
+
+macro index "A" ";D^^\\[platform-alerts\\]\n"
+macro index "\Cr" \
+    "<tag-pattern>~O\n<tag-prefix><clear-flag>N" \
+    "mark all ~O messages as read"
+# <tag-prefix><clear-flag>*
+
+
+macro index,pager Y "<view-attachments><search>text\/html<enter><enter><exit>" \
+       "view the first html attachment of a message"
+
+
+macro index "<backspace>" \
+    "<search>~F\n" \
+    "jump to next flagged message"
+
+macro pager \cl "|urlscan\n" #Extract Links from Emails"
+macro index \cl "|urlscan\n" #Extract Links from Emails"
+
+
+auto_view text/html
+mime_lookup application/octet-stream
+
+ignore headers *
+unignore headers from to subject date cc
+
+set header_cache = "+header_cache"
+
+set keep_flagged = yes
+set noconfirmappend
+set move = yes
+set sort = threads
+
+#push "c=srush@facebook.com/INBOX\n"
+
+# ldap
+
+set query_command = "mutt_ldap_query '*%s*'"
+macro editor \t "<complete-query>"
+
+###
+### sidebar
+###
+
+set sidebar_width = 20
+set sidebar_visible = yes
+set sidebar_delim = '|'
+
+color sidebar_new brightyellow black # folders with new mail
+
+bind index,pager "<left>" sidebar-prev
+bind index,pager "<right>" sidebar-next
+bind index,pager "<delete>" sidebar-open
+bind index,pager "," sidebar-open
+macro index,pager "." "<enter-command>toggle sidebar_visible<enter>"
+
+###
+### mail
+###
+
+set realname = "Sasha Rush"
+set from = "srush@facebook.com"
+set hostname = "facebook.com"
+alternates "srush@facebook.com"
+
+set folder = "$HOME/Mail"
+set spoolfile = "+facebook"
+set mbox = "+facebook.mbox"
+set record = "+facebook.sent"
+set postponed = "+facebook.drafts"
+set use_envelope_from = yes
+
+mailboxes \
+    "+facebook" \
+    "+facebook.mbox" \
+    "+facebook.sent" \
+    "+facebook.drafts" \
+    "+srush-laptop" 
+    
+folder-hook "facebook" "set from = srush@facebook.com;  set record = +facebook.sent; set postponed = +facebook.drafts"
+
+
+mbox-hook "^facebook$" "+facebook.mbox"
+
+
+###
+### colors
+###
+
+color attachment brightmagenta default
+#color error brightwhite red   # errors yell at you in red
+color hdrdefault red default   # headers
+color indicator brightyellow magenta # currently selected message
+color markers brightcyan default  # the + for wrapped pager lines
+color message brightcyan default  # informational messages, not mail
+color normal white default # plain text
+color quoted green default  # quoted text
+color search brightgreen default # hilite search patterns in the pager
+color signature red default    # signature (after "-- ") is red
+color status brightyellow blue # status bar is yellow *on blue*
+color tilde blue default  # ~'s after message body
+color tree red default    # thread tree in index menu is magenta
+color signature blue default
+color underline yellow default
+color header cyan default "^(From|Subject):" # Important headers
+color body magenta default "(ftp|http)://[^ ]+"  # picks up URLs
+color body magenta default "[-a-z_0-9.]+@[-a-z_0-9.]+"
+
+
+color index cyan default  ~R
+color index white default ~O
+color index brightwhite default ~N
+color index yellow default "~f mvernal"
+color index yellow default "~f ruchi"
+color index yellow default  ~p
+color index white default "~s bug"
+color index white default "~s diff"
+color index red default "~s platform-alerts"
+color index blue default ~D
+color index yellow default ~T
+color index black red ~F
+
+color quoted  magenta default
+color quoted1 blue    default
+color quoted2 red     default
+color quoted3 yellow  default
+color quoted4 cyan    default
+color quoted5 blue    default
+color quoted6 magenta default
+color quoted7 red     default
+color quoted8 yellow  default
+color quoted9 cyan    default
