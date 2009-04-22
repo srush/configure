@@ -1,5 +1,3 @@
-# -*- python -*- hee haw!
-
 ###
 ### behavior
 ###
@@ -48,8 +46,6 @@ set keep_flagged = yes
 set noconfirmappend
 set move = yes
 set sort = threads
-
-#push "c=srush@facebook.com/INBOX\n"
 
 # ldap
 

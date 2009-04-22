@@ -21,7 +21,7 @@ synclient "verttwofingerscroll=1"
 synclient "horiztwofingerscroll=1"
 
 
-export EDITOR="emacsclient -a \"emacs -nw\""
+export EDITOR="emacsclient -a emacs "
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 
