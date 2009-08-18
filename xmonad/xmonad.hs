@@ -16,10 +16,13 @@ import XMonad.Util.Run(spawnPipe)
 import XMonad.Layout.Circle 
 import XMonad.Layout.Magnifier 
 import XMonad.Layout.IM
+import XMonad.Layout.Grid
 import XMonad.Layout.PerWorkspace
 import XMonad.Layout.Reflect
 import XMonad.Layout.NoBorders
 import XMonad.Layout.LayoutHints
+import XMonad.Layout.IM
+import Data.Ratio ((%))
 
 
 import System.IO
@@ -31,11 +34,13 @@ import qualified Data.Map        as M
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
 --
-myTerminal      = "xterm"
+myTerminal      = "gnome-terminal"
  
 -- Width of the window border in pixels.
 --
 myBorderWidth   = 5
+
+q_Cellwriter = ClassName "Cellwriter"
  
 -- modMask lets you specify which modkey you want to use. The default
 -- is mod1Mask ("left alt").  You may also consider using mod3Mask
@@ -68,7 +73,7 @@ myNumlockMask   = mod2Mask
 --
 -- > workspaces = ["web", "irc", "code" ] ++ map show [4..9]
 --
-myWorkspaces    = ["web","mail", "glade"] ++ map show [4..9]
+myWorkspaces    = ["web","mail", "glade", "tablet"] ++ map show [5..9]
  
 -- Border colors for unfocused and focused windows, respectively.
 --
@@ -88,7 +93,11 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
  
     -- launch gmrun
     , ((modm .|. shiftMask, xK_p     ), spawn "gmrun")
+
+    -- shift and unshift
+    , ((modm,               xK_y     ), spawn "rotateleft.sh")
  
+    , ((modm .|. shiftMask, xK_y     ), spawn "rotatenorm.sh")
     -- close focused window 
     , ((modm .|. shiftMask, xK_c     ), kill)
  
@@ -144,7 +153,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|. shiftMask, xK_q     ), io (exitWith ExitSuccess))
  
     -- Restart xmonad
-    , ((modm              , xK_q     ), restart "xmonad" True)
+    , ((modm              , xK_q     ), 
+       broadcastMessage ReleaseResources >> restart "/home/srush/.xmonad/xmonad" True)
     ]
     ++
  
@@ -155,15 +165,15 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     [((m .|. modm, k), windows $ f i)
         | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]
         , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]]
-    ++
+    -- ++
  
     --
     -- mod-{w,e,r}, Switch to physical/Xinerama screens 1, 2, or 3
     -- mod-shift-{w,e,r}, Move client to screen 1, 2, or 3
     --
-    [((m .|. modm, key), screenWorkspace sc >>= flip whenJust (windows . f))
-        | (key, sc) <- zip [xK_w, xK_e, xK_r] [0..]
-        , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
+    --[((m .|. modm, key), screenWorkspace sc >>= flip whenJust (windows . f))
+    --    | (key, sc) <- zip [xK_w, xK_e, xK_r] [0..]
+    --    , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
  
  
 ------------------------------------------------------------------------
@@ -195,8 +205,7 @@ myMouseBindings (XConfig {XMonad.modMask = modMask}) = M.fromList $
 -- which denotes layout choice.
 --
 myLayout = layoutHints . avoidStruts . smartBorders
-           $ onWorkspace "gimp" gimp 
-           $ (magnifiercz 1.2 Circle) ||| tiled ||| Full
+           $ (magnifiercz 1.2 tiled) ||| tiled ||| Full
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   = Tall nmaster delta ratio
@@ -205,14 +214,11 @@ myLayout = layoutHints . avoidStruts . smartBorders
      nmaster = 1
  
      -- Default proportion of screen occupied by master pane
-     ratio   = 1/2
+     ratio   = 2/3
  
      -- Percent of screen to increment by when resizing panes
      delta   = 3/100
  
-     gimp    = withIM (0.11) (Role "gimp-toolbox") $
-               reflectHoriz $
-               withIM (0.15) (Role "gimp-dock") Full
 ------------------------------------------------------------------------
 -- Window rules:
  
@@ -228,12 +234,15 @@ myLayout = layoutHints . avoidStruts . smartBorders
 -- To match on the WM_NAME, you can use 'title' in the same way that
 -- 'className' and 'resource' are used below.
 --
-myManageHook = manageDocks <+> manageHook defaultConfig
+myManageHook = composeAll 
+               [
+                className =? "Cellwriter"   --> doIgnore,
+                manageDocks
+               ]
  
 -- Whether focus follows the mouse pointer.
 myFocusFollowsMouse :: Bool
-myFocusFollowsMouse = True
- 
+myFocusFollowsMouse = True 
  
 ------------------------------------------------------------------------
 -- Status bars and logging
@@ -262,7 +271,7 @@ myStartupHook = return ()
 -- Run xmonad with the settings you specify. No need to modify this.
 --
 main = do
-  xmproc <- spawnPipe "/home/srush/.cabal/bin/xmobar /home/srush/.xmobarrc"
+  xmproc <- spawnPipe "/home/srush/.cabal/bin/xmobar"
   xmonad $ defaults 
  
 -- A structure containing your configuration settings, overriding
@@ -288,6 +297,6 @@ defaults = defaultConfig {
  
       -- hooks, layouts
         layoutHook         = myLayout,
-        manageHook         = myManageHook,
+        manageHook         = myManageHook <+> manageHook defaultConfig,
         startupHook        = myStartupHook
     }

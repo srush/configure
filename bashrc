@@ -15,10 +15,10 @@ export HISTCONTROL=ignoreboth
 shopt -s histappend
 
 
-synclient "tapbutton2=3"
-synclient "tapbutton3=2"
-synclient "verttwofingerscroll=1"
-synclient "horiztwofingerscroll=1"
+# synclient "tapbutton2=3"
+# synclient "tapbutton3=2"
+# synclient "verttwofingerscroll=1"
+# synclient "horiztwofingerscroll=1"
 
 
 export EDITOR="emacsclient -a emacs "
@@ -99,7 +99,7 @@ fi
 alias ll='ls -l'
 alias la='ls -A'
 alias l='ls -CF'
-export PATH=$PATH:~/.cabal/bin/:/var/lib/gems/1.8/bin/
+export PATH=$PATH:~/.cabal/bin/:~/.xmonad/:/var/lib/gems/1.8/bin/
 
 source "/home/srush/.bashrc.alias"
 
