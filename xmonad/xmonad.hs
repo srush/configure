@@ -22,6 +22,7 @@ import XMonad.Layout.Reflect
 import XMonad.Layout.NoBorders
 import XMonad.Layout.LayoutHints
 import XMonad.Layout.IM
+import XMonad.Hooks.SetWMName
 import Data.Ratio ((%))
 
 
@@ -263,7 +264,7 @@ myFocusFollowsMouse = True
 -- per-workspace layout choices.
 --
 -- By default, do nothing.
-myStartupHook = return ()
+myStartupHook = setWMName "LG3D"
  
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
