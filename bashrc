@@ -11,6 +11,8 @@ export HISTCONTROL=$HISTCONTROL${HISTCONTROL+,}ignoredups
 # ... or force ignoredups and ignorespace
 export HISTCONTROL=ignoreboth
 
+export CLASSPATH=~/Lib/*:~/Lib/berkeleyParser/berkeleyParser.jar:/usr/share/java/*:./*
+
 # append to the history file, don't overwrite it
 shopt -s histappend
 
@@ -99,9 +101,9 @@ fi
 alias ll='ls -l'
 alias la='ls -A'
 alias l='ls -CF'
-export PATH=$PATH:~/.cabal/bin/:~/.xmonad/:/var/lib/gems/1.8/bin/
+export PATH=$PATH:~/.cabal/bin/:~/.xmonad/:/var/lib/gems/1.8/bin/:~/Lib/ampl/bin/:~/Lib/graclus1.2/
 
-source "/home/srush/.bashrc.alias"
+source "/afs/csail.mit.edu/u/s/srush/.bashrc.alias"
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -111,3 +113,4 @@ if [ -f /etc/bash_completion ]; then
 fi
 
 export AWT_TOOLKIT=MToolkit
+export AMPL_LICENSE_FILE=~/Lib/ampl/ampl.lic
