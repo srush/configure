@@ -13,6 +13,8 @@ export HISTCONTROL=ignoreboth
 
 export CLASSPATH=~/Lib/*:~/Lib/berkeleyParser/berkeleyParser.jar:/usr/share/java/*:./*
 
+export LD_LIBRARY_PATH=/usr/local/lib/:$LD_LIBRARY_PATH
+
 # append to the history file, don't overwrite it
 shopt -s histappend
 
@@ -114,3 +116,11 @@ fi
 
 export AWT_TOOLKIT=MToolkit
 export AMPL_LICENSE_FILE=~/Lib/ampl/ampl.lic
+
+export CXX=g++-4.1
+export CC=gcc-4.1
+       
+export GUROBI_HOME="/afs/csail.mit.edu/u/s/srush/Lib/gurobi301/linux64/"
+export PATH="${PATH}:${GUROBI_HOME}/bin"
+export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${GUROBI_HOME}/lib"
+export GRB_LICENSE_FILE=${GUROBI_HOME}/gurobi.lic
