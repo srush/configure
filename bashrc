@@ -107,7 +107,6 @@ alias la='ls -A'
 alias l='ls -CF'
 export PATH=$PATH:~/.cabal/bin/:~/.xmonad/:/var/lib/gems/1.8/bin/:~/Lib/ampl/bin/:~/Lib/graclus1.2/
 
-# source "/afs/csail.mit.edu/u/s/srush/.bashrc.alias"
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -126,3 +125,19 @@ export PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=cpp
 export TERM=xterm-256color
 
 export SCARAB_ROOT="/home/srush/Projects/relax_decode/"
+
+export CXX=g++-4.1
+export CC=gcc-4.1
+       
+export GUROBI_HOME="/home/rcf-40/ar_009/h/Libs/gurobi400/linux64/"
+export PATH="${PATH}:${GUROBI_HOME}/bin"
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:${GUROBI_HOME}/lib"
+export GRB_LICENSE_FILE=${GUROBI_HOME}/gurobi.lic
+
+shopt -s histappend
+#export PROMPT_COMMAND='history -a'
+if [ -f ~/.bash.extra ]; then
+    . ~/.bash.extra
+fi
+
+
