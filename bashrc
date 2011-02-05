@@ -13,7 +13,9 @@ export HISTCONTROL=ignoreboth
 
 export CLASSPATH=~/Lib/*:~/Lib/berkeleyParser/berkeleyParser.jar:/usr/share/java/*:./*
 
-export LD_LIBRARY_PATH=/usr/local/lib/:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=/usr/local/lib/:/home/srush/libs/gurobi400/linux32/lib/:$LD_LIBRARY_PATH
+
+export GRB_LICENSE_FILE=/home/srush/libs/gurobi400/linux32/gurobi.lic
 
 # append to the history file, don't overwrite it
 shopt -s histappend
@@ -83,9 +85,9 @@ esac
 # ~/.bash_aliases, instead of adding them here directly.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
-#if [ -f ~/.bash_aliases ]; then
-#    . ~/.bash_aliases
-#fi
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -105,7 +107,7 @@ alias la='ls -A'
 alias l='ls -CF'
 export PATH=$PATH:~/.cabal/bin/:~/.xmonad/:/var/lib/gems/1.8/bin/:~/Lib/ampl/bin/:~/Lib/graclus1.2/
 
-source "/afs/csail.mit.edu/u/s/srush/.bashrc.alias"
+# source "/afs/csail.mit.edu/u/s/srush/.bashrc.alias"
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -114,13 +116,13 @@ if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
 fi
 
-export AWT_TOOLKIT=MToolkit
-export AMPL_LICENSE_FILE=~/Lib/ampl/ampl.lic
+shopt -s histappend
+export PROMPT_COMMAND="history -a; history -n;"
 
-export CXX=g++-4.1
-export CC=gcc-4.1
-       
-export GUROBI_HOME="/afs/csail.mit.edu/u/s/srush/Lib/gurobi301/linux64/"
-export PATH="${PATH}:${GUROBI_HOME}/bin"
-export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:${GUROBI_HOME}/lib"
-export GRB_LICENSE_FILE=${GUROBI_HOME}/gurobi.lic
+source /usr/share/doc/cdargs/examples/cdargs-bash.sh
+
+export DATA="/home/srush/Projects/relax_decode/parse/data/"
+export PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=cpp
+export TERM=xterm-256color
+
+export SCARAB_ROOT="/home/srush/Projects/relax_decode/"

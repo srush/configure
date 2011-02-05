@@ -90,10 +90,10 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
  
     -- launch dmenu
-    , ((modm,               xK_p     ), spawn "exe=`dmenu_path | dmenu` && eval \"exec $exe\"")
+    , ((modm,               xK_o     ), spawn "exe=`dmenu_path | dmenu` && eval \"exec $exe\"")
  
     -- launch gmrun
-    , ((modm .|. shiftMask, xK_p     ), spawn "gmrun")
+    , ((modm .|. shiftMask, xK_o     ), spawn "gmrun")
 
     -- shift and unshift
     , ((modm,               xK_y     ), spawn "rotateleft.sh")
@@ -133,7 +133,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|. shiftMask, xK_k     ), windows W.swapUp    )
  
     -- Shrink the master area
-    , ((modm,               xK_h     ), sendMessage Shrink)
+    --    , ((modm,               xK_h     ), sendMessage Shrink)
  
     -- Expand the master area
     , ((modm,               xK_l     ), sendMessage Expand)
@@ -272,7 +272,7 @@ myStartupHook = setWMName "LG3D"
 -- Run xmonad with the settings you specify. No need to modify this.
 --
 main = do
-  xmproc <- spawnPipe "/home/srush/.cabal/bin/xmobar"
+  xmproc <- spawnPipe "/usr/bin/xmobar"
   xmonad $ defaults 
  
 -- A structure containing your configuration settings, overriding

@@ -1,5 +1,6 @@
 # For a complete list of available commands, see http://bit.ly/jLtj
 
+escape ^qq
 bind j prev
 bind k next
 
@@ -7,6 +8,8 @@ bind k next
 # Message to display in the status line when activity is detected in a
 # monitored window.
 activity              "activity in %n (%t) [%w:%s]~"
+
+
 
 # Detach session on hangup instead of terminating screen completely.
 autodetach            on              # default: on
