@@ -129,7 +129,7 @@ export SCARAB_ROOT="/home/srush/Projects/relax_decode/"
 export CXX=g++-4.1
 export CC=gcc-4.1
        
-export GUROBI_HOME="/home/rcf-40/ar_009/h/Libs/gurobi400/linux64/"
+export GUROBI_HOME="/home/srush/libs/gurobi400/linux32/"
 export PATH="${PATH}:${GUROBI_HOME}/bin"
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:${GUROBI_HOME}/lib"
 export GRB_LICENSE_FILE=${GUROBI_HOME}/gurobi.lic
