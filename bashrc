@@ -13,9 +13,8 @@ export HISTCONTROL=ignoreboth
 
 export CLASSPATH=~/Lib/*:~/Lib/berkeleyParser/berkeleyParser.jar:/usr/share/java/*:./*
 
-export LD_LIBRARY_PATH=/usr/local/lib/:/home/srush/libs/gurobi400/linux32/lib/:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=/usr/local/lib/:/home/alexanderrush/libs/gurobi510/linux64/lib/:$LD_LIBRARY_PATH
 
-export GRB_LICENSE_FILE=/home/srush/libs/gurobi400/linux32/gurobi.lic
 
 # append to the history file, don't overwrite it
 shopt -s histappend
@@ -121,15 +120,15 @@ export PROMPT_COMMAND="history -a; history -n;"
 source /usr/share/doc/cdargs/examples/cdargs-bash.sh
 
 export DATA="/home/srush/Projects/relax_decode/parse/data/"
-export PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=cpp
+export PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python
 export TERM=xterm-256color
 
 export SCARAB_ROOT="/home/srush/Projects/relax_decode/"
 
-export CXX=g++-4.1
-export CC=gcc-4.1
+export CXX=g++-4.6
+export CC=gcc-4.6
        
-export GUROBI_HOME="/home/srush/libs/gurobi400/linux32/"
+export GUROBI_HOME="/home/srush/libs/gurobi510/linux64/"
 export PATH="${PATH}:${GUROBI_HOME}/bin"
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:${GUROBI_HOME}/lib"
 export GRB_LICENSE_FILE=${GUROBI_HOME}/gurobi.lic
@@ -140,4 +139,11 @@ if [ -f ~/.bash.extra ]; then
     . ~/.bash.extra
 fi
 
+export GOROOT=$HOME/Projects/goappengine/google_appengine/goroot
+export PATH=$PATH:$GOROOT/..
 
+export YAAFE_DIR=/home/alexanderrush/libs/yaafe-v0.64/
+export YAAFE_PATH=/usr/local/yaafe_extensions
+export PATH=$PATH:$YAAFE_DIR/bin
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$YAAFE_DIR/lib
+export PYTHONPATH=$PYTHONPATH:$YAAFE_DIR/src_python

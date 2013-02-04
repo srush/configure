@@ -1,5 +1,6 @@
 alias almix='alsamixer -Dhw'
 alias e='emacs -nw'
+alias gsrush='ssh srush.nyc.corp.google.com'
 alias asearch='apt-cache search'
 alias ains='sudo apt-get install'
 
