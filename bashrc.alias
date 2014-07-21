@@ -19,8 +19,8 @@ alias xclip='xclip -selection c'
 alias gohome='ssh srush@d42.gotdns.org'
 alias gougly='ssh srush@ugly.gotdns.org'
 
-alias gpush='git push origin master'
-alias gpull='git pull origin master'
+alias gout='git push origin master'
+alias gin='git pull origin master'
 alias gcom='git commit -a -m '
 
 

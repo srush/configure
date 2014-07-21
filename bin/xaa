@@ -1,0 +1,9 @@
+ M ../bashrc.alias
+ M ../emacs.config
+?? ./
+?? ../emacs-dir/auto-save-list/
+?? ../emacs-dir/emacs-backup/
+?? ../xmonad/xmonad-x86_64-linux
+?? ../xmonad/xmonad.errors
+?? ../xmonad/xmonad.hi
+?? ../xmonad/xmonad.o
