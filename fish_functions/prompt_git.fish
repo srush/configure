@@ -1,0 +1,1 @@
+/home/srush/external/fish-git/functions/prompt_git.fish
