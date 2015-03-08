@@ -23,6 +23,7 @@ import XMonad.Layout.NoBorders
 import XMonad.Layout.LayoutHints
 import XMonad.Layout.IM
 import XMonad.Hooks.SetWMName
+import XMonad.Config.Gnome
 import Data.Ratio ((%))
 
 
@@ -273,7 +274,7 @@ myStartupHook = setWMName "LG3D"
 --
 main = do
   xmproc <- spawnPipe "/usr/bin/xmobar"
-  xmonad $ defaults 
+  xmonad $ defaults
  
 -- A structure containing your configuration settings, overriding
 -- fields in the default config. Any you don't override, will 
@@ -281,7 +282,7 @@ main = do
 -- 
 -- No need to modify this.
 --
-defaults = defaultConfig {
+defaults = gnomeConfig  {
       -- simple stuff
         terminal           = myTerminal,
         focusFollowsMouse  = myFocusFollowsMouse,
