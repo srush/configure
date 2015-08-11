@@ -265,7 +265,7 @@ myFocusFollowsMouse = True
 -- per-workspace layout choices.
 --
 -- By default, do nothing.
-myStartupHook = setWMName "LG3D"
+myStartupHook = startupHook gnomeConfig >> setWMName "LG3D"
  
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
@@ -273,7 +273,6 @@ myStartupHook = setWMName "LG3D"
 -- Run xmonad with the settings you specify. No need to modify this.
 --
 main = do
-  xmproc <- spawnPipe "/usr/bin/xmobar"
   xmonad $ defaults
  
 -- A structure containing your configuration settings, overriding
