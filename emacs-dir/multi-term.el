@@ -348,8 +348,7 @@ Default is nil."
   :type 'boolean
   :set (lambda (symbol value)
          (set symbol value)
-         (when (ad-advised-definition-p 'other-window)
-           (multi-term-dedicated-handle-other-window-advice value)))
+         )
   :group 'multi-term)
 
 (defcustom multi-term-dedicated-select-after-open-p nil
